@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  h1= title
+  .image-block
+  	img.className#IdName(src='#{thumbnail}' height="183" width="123" alt= '#{title}')
+  h2= title
  
-  h2= By #{author}
+  h3= By #{author}
