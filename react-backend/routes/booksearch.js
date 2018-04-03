@@ -10,7 +10,7 @@ router.get('/', function(req, res, next) {
 	    key: MY_API_KEY,
 	    field: 'title',
 	    offset: 0,
-	    limit: 2,
+	    limit: 10,
 	    type: 'books',
 	    order: 'relevance',
 	    lang: 'en'

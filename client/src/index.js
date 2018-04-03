@@ -23,9 +23,9 @@ ReactDOM.render(
 			<div>
 				<Navbar/>
 				<Route exact={true} path="/" component={App} />
-					<Route path="/about" component={About} />
-					<Route path="/faqs" component={Faqs} />
-					<Route path="/search_results" component={SearchResults} />
+				<Route path="/about" component={About} />
+				<Route path="/faqs" component={Faqs} />
+				<Route path="/search_results" component={SearchResults} />
 			</div>
 		</BrowserRouter>
 	</Provider>
