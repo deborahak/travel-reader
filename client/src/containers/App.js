@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Link, Route } from 'react-router-dom';
-import Button from 'material-ui/Button';
+// import Button from 'material-ui/Button';
 //import logo from './logo.svg';
 import SearchForm from '../containers/search_form';
+// import TestForm from '../containers/test_form';
 
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -35,6 +36,7 @@ class App extends Component {
 
   render() {
     const { classes } = this.props;
+
     return (
       <div className={classes.root}>
         <Grid container spacing={16}>          
