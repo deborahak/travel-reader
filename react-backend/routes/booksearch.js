@@ -5,6 +5,9 @@ var MY_API_KEY = 'AIzaSyA2KfbaezO-UMr_YpPPm7rf9jRJ2RIcqLM';
 
 
 router.get('/', function(req, res, next) {
+	// res.header("Access-Control-Allow-Origin", "*");
+	// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
+	// next();
 
 	var options = {
 	    key: MY_API_KEY,

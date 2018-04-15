@@ -1,21 +1,20 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-import { Link } from 'react-router-dom'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+// import axios from 'axios';
 
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { MenuItem } from 'material-ui/Menu'
 import { InputLabel } from 'material-ui/Input';
 import { FormControl, FormControlLabel, FormControlText } from 'material-ui/Form';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
-import { withStyles } from 'material-ui/styles';
-
-import { orange500 } from 'material-ui/styles';
+// import { withStyles } from 'material-ui/styles';
 
 import {
 	Checkbox,
-	RadioGroup,
+	// RadioGroup,
 	Select,
 	TextField
 } from 'redux-form-material-ui';

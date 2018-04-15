@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
-import { Link, Route } from 'react-router-dom';
+//import { Route } from 'react-router-dom';
 // import Button from 'material-ui/Button';
-//import logo from './logo.svg';
 import SearchForm from '../containers/search_form';
-// import TestForm from '../containers/test_form';
 
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -57,4 +55,3 @@ App.propTypes = {
 };
 export default withStyles(styles)(App);
 
-JSON.stringify

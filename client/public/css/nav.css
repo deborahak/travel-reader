@@ -563,7 +563,7 @@ main {
 	.hamburger {
 		position: fixed;
 		top: 0.5em;
-		right: 0.5em;
+		right: 1.5em;
 		transform: scale(0.75);
 	}
 	.content {

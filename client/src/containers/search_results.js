@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
+import { fetchBooks } from '../actions/index';
+
 // import { Link, Route } from 'react-router-dom';
 // import GoogleMap from '../containers/google-map';
 import SearchForm from '../containers/search_form';
@@ -30,15 +33,19 @@ const styles = theme => ({
 
 
 class SearchResults extends Component {
-	state = { bookresult: [] }
+	 state = { bookresult: [] }
 
 	componentDidMount() {
-		fetch('/booksearch')
-		.then(res => res.json())
-		.then(bookresult => this.setState({ bookresult }));
+		// fetch('/booksearch')
+  //   .then(res => res.json())
+  //   .then(bookresult => this.setState({ bookresult }));
 	}
 
+  
 	render() {
+
+    // const { handleSubmit } = this.props;
+
 		const { classes } = this.props;
 		const MAX_LENGTH = 42;
 		const MAX_CHAR = 15;

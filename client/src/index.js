@@ -9,8 +9,9 @@ import SearchResults from './containers/search_results';
 import About from './components/about';
 import Faqs from './components/faqs';
 import Navbar from './components/navbar';
-import reducers from './reducers';
 import Footer from './components/footer';
+
+import reducers from './reducers';
 
 import registerServiceWorker from './registerServiceWorker';
 
