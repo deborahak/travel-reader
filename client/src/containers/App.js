@@ -3,29 +3,39 @@ import React, { Component } from 'react';
 // import Button from 'material-ui/Button';
 import SearchForm from '../containers/search_form';
 
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Grid from 'material-ui/Grid';
 
-import '../style/App.css';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing.unit * 2,
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
+});
+
+const theme = createMuiTheme({
+  palette: ({
+    primary: {
+      main: '#3f51b5',
+    },
+    error: {
+      light: '#0066ff',
+      main: '#6ff9ff',
+      contrastText: '#fff',
+    },
+  }),
+  overrides: {
+    MuiInput: {
+      input: {
+        color: '#6ff9ff',
+      },
+    },
   },
-  control: {
-    padding: theme.spacing.unit * 2
-  }
 });
 
 class App extends Component {
-  // state = {bookresult: []}
-
   // componentDidMount() {
   //   fetch('/booksearch')
   //     .then(res => res.json())
@@ -36,6 +46,7 @@ class App extends Component {
     const { classes } = this.props;
 
     return (
+      <MuiThemeProvider theme={theme}>
       <div className={classes.root}>
         <Grid container spacing={16}>          
           <Grid item xs={12}>
@@ -44,10 +55,10 @@ class App extends Component {
           
           </Grid>    
         </Grid>
-        </div>
+      </div>
+      </MuiThemeProvider>
       );
   }
-
 }
 
 App.propTypes = {

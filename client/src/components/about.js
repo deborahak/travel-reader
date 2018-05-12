@@ -48,6 +48,13 @@ class About extends Component {
 			  	  want to visit, fueling my dreams. </p>
 			  	</Grid>
 			  	<Grid item xs={12}>
+			  	  <h2>Why this project?</h2>
+			  	  <p className='dark'>
+			  	  This project was started to explore and expand my React skills.  In order to complete it,
+			  	  I had to venture into Redux and Axios, and refresh my skills in NodeJS.  
+			  	  </p>
+			  	</Grid>
+			  	<Grid item xs={12}>
 			  	</Grid>
 			  </Grid>			  	
 

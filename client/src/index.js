@@ -12,6 +12,7 @@ import Navbar from './components/navbar';
 import Footer from './components/footer';
 
 import reducers from './reducers';
+import promise from 'redux-promise';
 
 import registerServiceWorker from './registerServiceWorker';
 
@@ -20,7 +21,8 @@ import red from "material-ui/colors/red";
 
 const primary = red[500]; // #F44336
 
-const createStoreWithMiddleware = applyMiddleware()(createStore);
+const createStoreWithMiddleware = applyMiddleware(promise)(createStore);
+
 
 const style = {
 	backgroundColor: primary,

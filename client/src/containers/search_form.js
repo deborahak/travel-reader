@@ -1,97 +1,107 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router-dom';
-// import axios from 'axios';
+import { Redirect } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { searchBooks } from '../actions';
 
 import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { MenuItem } from 'material-ui/Menu'
 import { InputLabel } from 'material-ui/Input';
-import { FormControl, FormControlLabel, FormControlText } from 'material-ui/Form';
-// import PropTypes from 'prop-types';
+import { FormControl, FormControlLabel } from 'material-ui/Form';
+
+import PropTypes from 'prop-types';
 import Grid from 'material-ui/Grid';
 import Button from 'material-ui/Button';
-// import { withStyles } from 'material-ui/styles';
+import { withStyles } from 'material-ui/styles';
 
 import {
 	Checkbox,
-	// RadioGroup,
 	Select,
 	TextField
 } from 'redux-form-material-ui';
 
 const required = value => (value == null ? 'Required' : undefined);
+const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
-const styles = {
+const styles = theme => ({
 	root: {
-    flexGrow: 1
+    padding: '0px 33px 33px 33px',
   },
-  inputLabelFocused: {
-    color: '#6ff9ff', // #6ff9ff !important
-  },
-  inputUnderline: {
-    color: '#6ff9ff', // #6ff9ff !important
+  inputWidth: {
     width: '20rem',
-   '&:after': {
-      backgroundColor: '#6ff9ff', // #6ff9ff !important
-    },
   },
-  formControl: { 
-    width: '20rem',
-    color: '#6ff9ff', // #6ff9ff !important
-    '&:after': {
-      backgroundColor: '#6ff9ff',
-    },
-  },
-  error: {
-    
-
-  },
+  // inputLabelFocused: {
+  //   color: '#6ff9ff', // #6ff9ff !important
+  // },
+  // inputUnderline: {
+  //   color: '#6ff9ff', // #6ff9ff !important
+  //   width: '20rem',
+  //  '&:after': {
+  //     backgroundColor: '#6ff9ff', // #6ff9ff !important
+  //   },
+  // },
+  // formControl: { 
+  //   width: '20rem',
+  //   color: '#6ff9ff', // #6ff9ff !important
+  //   '&:after': {
+  //     backgroundColor: '#6ff9ff',
+  //   },
+  //},
   btnControl: {
     marginRight: 2+'em', 
     border: 1+'px solid #fff',
     color: '#fff',
   },
-};
+});
 
 
 class SearchForm extends Component {
-	ComponentDidMount(){
-    // this.refs.genre // the Field
-    //   .getRenderedComponent() // on Field, returns ReduxFormMaterialUITextField
-    //   .getRenderedComponent() // on ReduxFormMaterialUITextField, returns TextField
-    //   .focus(); // on TextField
+  constructor(props){
+    super(props);
+      this.state = {
+        advanceForm: false
+      }
   }
-
-  onSubmit(values) {
+ 
+  onSubmit = (values) => {
     console.log(values);
+    this.props.dispatch(searchBooks(values));
+    return sleep(500)
+    .then( () => this.setState( () => ({
+      advanceForm: true
+    }) ))
   }
 
 	render() {
-		const { handleSubmit, pristine, reset, submitting, classes} = this.props;
+		const { classes, handleSubmit, pristine, reset, submitting } = this.props;
+
+    if (this.state.advanceForm === true){
+      return <Redirect to = '/search_results' />
+    }
 
 		return (
-      <Grid container style={styles.root}>
+      <Grid container className={classes.root}>
 
-        	<form style={styles.root} onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
+        	<form onSubmit={ handleSubmit(this.onSubmit.bind(this)) }>
 
           		<Grid item>
                 <h2>I want to read...</h2>
 
             		<FormControl>
-              		  <InputLabel htmlFor="genre">Pick your poison...</InputLabel>
+              		  <InputLabel htmlFor="categories">Pick your poison...</InputLabel>
               		  <Field
-                		name="genre"
-                		component={Select}
-                		placeholder="Pick your poison"
-                		validate={required}
-                		style={styles.inputUnderline}
+                		  name="categories"
+                		  component={Select}
+                		  placeholder="Pick your poison"
+                		  validate={required}
+                		  className={classes.inputWidth}
               		  >
-                		<MenuItem value="mystery">Mysteries</MenuItem>
-                		<MenuItem value="thriller">Thrillers</MenuItem>
-                		<MenuItem value="suspense">Suspense</MenuItem>
+                		  <MenuItem value="mystery">Mysteries</MenuItem>
+                		  <MenuItem value="thriller">Thrillers</MenuItem>
+                		  <MenuItem value="suspense">Suspense</MenuItem>
               		  </Field>
             		</FormControl>
-          		  </Grid>
+          		</Grid>
 
          		  <h2>in the amazing city of...</h2> 
 
@@ -100,9 +110,11 @@ class SearchForm extends Component {
               		name="city"
               		component={TextField}
               		placeholder="City"
+                  label="City"
               		validate={required}
               		ref={this.saveRef}
               		withRef
+                  className={classes.inputWidth}
             	 	 />
           		  </Grid>
 
@@ -110,20 +122,21 @@ class SearchForm extends Component {
 
           		<Grid item>
            		 <Field
-            	  name="country"
-            	  component={TextField}
-            	  placeholder="Country"
-            	  validate={required}
-                style={styles.formControl}
+            	   name="country"
+            	   component={TextField}
+            	   placeholder="Country"
+                 label="Country"
+            	   validate={required}
+                 className={classes.inputWidth}
           	  	/>
           		</Grid>
 
-          		<Grid item className="list-margin">
-          	   	  <FormControlLabel control={<Field name="E-Book" component={Checkbox} /> } label="E-Book" />
-          		</Grid>
-        		<Grid item className="list-margin">
+          	  <Grid item className="list-margin">
+          	   	  <FormControlLabel control={ <Field name="E-Book" component={Checkbox} /> } label="E-Book" />
+          	  </Grid>
+        		  <Grid item className="list-margin">
             	  <FormControlLabel control={<Field name="Print" component={Checkbox} /> } label="Print" />
-        		</Grid>
+        		  </Grid>
           		<Grid item className="list-margin">
             	  <FormControlLabel control={<Field name="Used" component={Checkbox} /> } label="Used" />
           		</Grid>
@@ -134,49 +147,55 @@ class SearchForm extends Component {
               		placeholder="Notes"
               		label="Notes"
               		rows={4}
-                  style={styles.formControl}
+                  className={classes.inputWidth}
             	  />
           		</Grid>
 
           		<Grid item style={{marginTop: 1+'em'}}>
-            		<Link to ="/search_results">
-            			<Button type="submit" disabled={submitting} 
-            			style={styles.btnControl}>
-            			Search!</Button>
-            		</Link>
-            
-            	<Button
-              		type="button"
-              		disabled={pristine || submitting}
-              		onClick={reset}
-              		style={{border: 1+'px solid #fff'}}
-            	>
-              		Clear
-            	</Button>
-          	</Grid>
-        </form>        
+            		
+          			<Button type="submit" 
+                  disabled={submitting} 
+          			  className={classes.btnControl}>
+          			  Search!
+                </Button>
+          
+          	   <Button
+            		type="button"
+            		disabled={pristine || submitting}
+            		onClick={reset}
+            		style={{border: 1+'px solid #fff'}}
+          	   >
+            		Clear
+          	   </Button>
+        	   </Grid>
+          </form>        
         </Grid>
-		);
+		)
 	}
 }
 
 
-const selector = formValueSelector('SearchForm');
 
-SearchForm = connect(state => ({
-	genre: selector(state, 'genre'),
+// const selector = formValueSelector('SearchForm');
 
-}))(SearchForm);
+SearchForm = connect(null, {
+  searchBooks
+}) (SearchForm);
+
+SearchForm.propTypes = {
+  classes: PropTypes.object.isRequired,
+};
 
 SearchForm = reduxForm({
-	form: 'search',
+	form: 'SearchForm',
 	initialValues: {
 		// city: 'Rome',
-		// country: 'Italy'
+		// country: 'Italy',
+  //   categories: 'Mystery'
 	},
 })(SearchForm);
 
-export default SearchForm;
+export default withStyles(styles)(SearchForm);
 
 
 

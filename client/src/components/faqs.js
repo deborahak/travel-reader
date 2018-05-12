@@ -44,6 +44,12 @@ class Faqs extends Component {
                		Besides, I love a good murder mystery, especially when the bad guy gets caught!
                		</p>
           		</Grid>
+              <Grid item xs={12}>
+                  <h2>How does this work?</h2>
+                  <p className='dark'>
+                  Pick a genre, pick a city, pick a country.  You do have to pick all three!  Then this lovely librarian will go find you a book!  
+                  </p>
+              </Grid>
          		<Grid item xs={12} sm={6}>
             	  <Paper className={classes.paper}>xs=12 sm=6</Paper>
           		</Grid>
