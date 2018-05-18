@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-// import Paper from 'material-ui/Paper';
+import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 
 const secondary = '#84b8bd';
@@ -11,7 +11,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: secondary,
-     padding: '2rem'
+    padding: '2rem',
+    backgroundImage: 'FoggyNight.png',
+    backgroundMode: 'multiply',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -54,7 +58,29 @@ class About extends Component {
 			  	  I had to venture into Redux and Axios, and refresh my skills in NodeJS.  
 			  	  </p>
 			  	</Grid>
-			  	<Grid item xs={12}>
+
+			  	<Grid item xs={12} sm={3}>
+			  		<Paper className={classes.paper} elevation={20}>
+			  			<img className="about_stepIntoBook" alt='' />
+			  		</Paper>
+			  	</Grid>
+
+			  	<Grid item xs={12} sm={3}>
+			  		<Paper className={classes.paper} elevation={20}>
+			  			<img className="about_coffeeBook" alt='' />
+			  		</Paper>
+			  	</Grid>
+
+			  	<Grid item xs={12} sm={3}>
+			  		<Paper className={classes.paper} elevation={20}>
+			  			<img className="about_affairAtStyles" alt='' />
+			  		</Paper>
+			  	</Grid>
+
+			  	<Grid item xs={12} sm={3}>
+			  		<Paper className={classes.paper} elevation={20}>
+			  			<img className="about_readingCafe" alt='' />
+			  		</Paper>
 			  	</Grid>
 			  </Grid>			  	
 

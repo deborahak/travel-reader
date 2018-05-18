@@ -13,6 +13,12 @@ svg:not(:root) {
   color: white;
 }
 
+img {
+  -webkit-box-shadow: -5px -3px 10px -3px rgba(0,0,0,0.57);
+  -moz-box-shadow: -5px -3px 10px -3px rgba(0,0,0,0.57);
+  box-shadow: -5px -3px 10px -3px rgba(0,0,0,0.57);
+}
+
 svg.icon.icon--github:hover {
 	color: var(--color-link-hover);
 }
@@ -61,11 +67,90 @@ p.dark {
 p > span {
 	color: #f54336;
   font-weight: 800;
+  font-size: 1.5rem;
 }
 
 input:-webkit-autofill {
     padding: 5px;
 }
+
+.about_coffeeBook {
+    background-image: url( './assets/CoffeeWithBook.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
+.about_stepIntoBook {
+    background-image: url( './assets/StepIntoBook.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
+.about_affairAtStyles {
+    background-image: url( './assets/AffairAtStyles.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
+.about_readingCafe {
+    background-image: url( './assets/ReadingCafe.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
+.faqs_bobbieTorch {
+    background-image: url( './assets/BobbiesTorch.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
+.faqs_bookCat {
+    background-image: url( './assets/BookCat.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
+.faqs_bookStreet {
+    background-image: url( './assets/BookCoffeeStreet.png' );
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 180px;
+    background-color: black;
+    background-color: var(--path-fill-1);
+}
+
 
 @media screen and (max-width: 60em) {
 	h1.main_title {

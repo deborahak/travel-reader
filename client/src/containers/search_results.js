@@ -5,13 +5,22 @@ import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
+//import Button from 'material-ui/Button';
+
+import { Rating } from 'material-ui-rating';
+
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 import '../style/App.css';
 
 
 const styles = theme => ({
   root: {
-    flexGrow: 1
+    flexGrow: 1,
+    backgroundImage: 'FoggyNight.png',
+    backgroundMode: 'multiply',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
   demo: {
     height: 240,
@@ -26,10 +35,44 @@ const styles = theme => ({
     padding: theme.spacing.unit * 2
   },
   bookHeadline: {
-    height: 90,
-  }
+    height: 80,
+    color: '#413f46',
+  },
+  bookTitle: {
+    // color: '#413f46',
+    fontSize: 1.025+'rem',
+    margin: '.5em 0',
+  },
 });
 
+const theme = createMuiTheme({
+  overrides: {
+    MuiIconButton: {
+      root: {
+        flex: '0 0 auto',
+        width: 25 + 'px',
+        height: 33 + 'px',
+        padding: 0 + 'px',
+      },
+    },
+    MuiSvgIcon: {
+      root: {
+        fill: '#413f46',
+        fontSize: 20 + 'px',
+      },
+    },
+  },
+});
+
+function newRating(num){
+  var prevRating = 3;
+  var ratingsCount = 1;
+  var userRating = num;
+  var n = ((prevRating * ratingsCount) + userRating) / (ratingsCount + 1);
+  console.log(n);
+  return n;
+};
+// var booky = newRating(5);
 
 class SearchResults extends Component {
 	// state = { bookresult: [] }
@@ -47,7 +90,8 @@ class SearchResults extends Component {
 		const MAX_CHAR = 15;
 
 		return (
-      <Grid container className={classes.root}>
+      <MuiThemeProvider theme={theme}>
+        <Grid container className={classes.root}>
           <Grid item xs={12} sm={10}>
           <p></p>
           </Grid>
@@ -87,13 +131,24 @@ class SearchResults extends Component {
                       ? <h5>Genre: Undefined</h5>
                       : <h5>Genre: {book.categories.toString().substring(0, MAX_CHAR)}...</h5>
                     }
+                    {
+                      <Rating
+                      value = {book.averageRating}
+                      max = {5}
+                      onChange={(value) => newRating(value)}
+
+                      />
+                    }
+                
                   </Paper>
                 </Grid>
+
               ))}
             </Grid>
           </Grid>
         </Grid>
       </Grid>
+      </MuiThemeProvider>
 		);
 	}	
 }

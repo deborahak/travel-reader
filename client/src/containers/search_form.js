@@ -4,7 +4,7 @@ import { Redirect } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 import { searchBooks } from '../actions';
 
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { MenuItem } from 'material-ui/Menu'
 import { InputLabel } from 'material-ui/Input';
 import { FormControl, FormControlLabel } from 'material-ui/Form';
@@ -21,6 +21,7 @@ import {
 } from 'redux-form-material-ui';
 
 const required = value => (value == null ? 'Required' : undefined);
+//some latency build by me
 const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
 const styles = theme => ({
@@ -140,16 +141,7 @@ class SearchForm extends Component {
           		<Grid item className="list-margin">
             	  <FormControlLabel control={<Field name="Used" component={Checkbox} /> } label="Used" />
           		</Grid>
-          		<Grid item>
-            	  <Field
-              		name="notes"
-              		component={TextField}
-              		placeholder="Notes"
-              		label="Notes"
-              		rows={4}
-                  className={classes.inputWidth}
-            	  />
-          		</Grid>
+
 
           		<Grid item style={{marginTop: 1+'em'}}>
             		

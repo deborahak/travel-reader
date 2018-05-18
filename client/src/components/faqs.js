@@ -12,7 +12,11 @@ const styles = theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: complementary,
-    padding: '2rem'
+    padding: '2rem',
+    backgroundImage: 'FoggyNight.png',
+    backgroundMode: 'multiply',
+    backgroundRepeat: 'no-repeat',
+    backgroundSize: 'cover',
   },
   paper: {
     padding: theme.spacing.unit * 2,
@@ -50,24 +54,22 @@ class Faqs extends Component {
                   Pick a genre, pick a city, pick a country.  You do have to pick all three!  Then this lovely librarian will go find you a book!  
                   </p>
               </Grid>
-         		<Grid item xs={12} sm={6}>
-            	  <Paper className={classes.paper}>xs=12 sm=6</Paper>
+         		<Grid item xs={12} sm={3}>
+            	  <Paper className={classes.paper}>
+                  <img className="faqs_bobbieTorch" alt='' />
+                </Paper>
+          		</Grid>
+          		<Grid item xs={6} sm={6}>
+            	  <Paper className={classes.paper}> 
+                  <img className="faqs_bookCat" alt='' />
+                </Paper>
           		</Grid>
           		<Grid item xs={6} sm={3}>
-            	  <Paper className={classes.paper}>POSSIBLE GRAPHIC</Paper>
+            	  <Paper className={classes.paper}>
+                  <img className="faqs_bookStreet" alt='' />
+                </Paper>
           		</Grid>
-          		<Grid item xs={6} sm={3}>
-            	  <Paper className={classes.paper}>POSSIBLE GRAPHIC</Paper>
-          		</Grid>
-          		<Grid item xs={12} sm={6}>
-            	  <Paper className={classes.paper}>xs=12 sm=6</Paper>
-          		</Grid>
-          		<Grid item xs={6} sm={3}>
-            	  <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          		</Grid>
-          		<Grid item xs={6} sm={3}>
-            	  <Paper className={classes.paper}>xs=6 sm=3</Paper>
-          		</Grid>
+          	
         	  </Grid>
 			</div>
 			);
