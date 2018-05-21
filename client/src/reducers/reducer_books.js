@@ -1,9 +1,10 @@
 import { SEARCH_BOOKS } from '../actions';
+import { RATE_BOOK } from '../actions';
 
 const INITIAL_STATE = {
   booksearch: [{
 	id: 0,
-    title: 'The Mystery of Three Quarters: the New Hercule Poirot Mystery',
+    title: 'Evil Lurks in JavaScript: the New Hercule Poirot Mystery',
     authors: [ 'Sophie Hannah' ],
     description: 'The world\'s most beloved detective, Hercule Poirot - the legendary star of Agatha Christie\'s Murder on the Orient Express and most recently The Monogram Murders and Closed Casket-returns in a stylish, diabolically clever mystery set in 1930\'s London. Returning home after lunch one day, Hercule Poirot finds an angry woman waiting outside his front door. She demands to know why Poirot has sent her a letter accusing her of the murder of Barnabas Pandy, a man she has neither heard of nor ever met. Poirot has also never heard of a Barnabas Pandy, and has accused nobody of murder. Shaken, he goes inside, only to find that he has a visitor waiting for him - a man who also claims also to have received a letter from Poirot that morning, accusing him of the murder of Barnabas Pandy... Poirot wonders how many more letters of this sort have been sent in his name. Who sent them, and why? More importantly, who is Barnabas Pandy, is he dead, and, if so, was he murdered? And can Poirot find out the answers without putting more lives in danger?',
     pageCount: 400,
@@ -45,7 +46,9 @@ export default function(state = INITIAL_STATE, action) {
 		return Object.assign({}, state, {
 			booksearch: (action.payload)
 		});
-
+        case RATE_BOOK:
+        return {...state, averageRating: action.payload};
+        
 		default: 
 		return state;
 	}

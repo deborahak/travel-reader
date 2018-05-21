@@ -13,14 +13,11 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 import '../style/App.css';
 
+import {rateBook} from '../actions';
 
 const styles = theme => ({
   root: {
     flexGrow: 1,
-    backgroundImage: 'FoggyNight.png',
-    backgroundMode: 'multiply',
-    backgroundRepeat: 'no-repeat',
-    backgroundSize: 'cover',
   },
   demo: {
     height: 240,
@@ -64,19 +61,23 @@ const theme = createMuiTheme({
   },
 });
 
-function newRating(num){
-  var prevRating = 3;
-  var ratingsCount = 1;
-  var userRating = num;
-  var n = ((prevRating * ratingsCount) + userRating) / (ratingsCount + 1);
-  console.log(n);
-  return n;
-};
+// function newRating(num){
+//   var prevRating = 3;
+//   var ratingsCount = 1;
+//   var userRating = num;
+//   var n = ((prevRating * ratingsCount) + userRating) / (ratingsCount + 1);
+//   console.log(n + ' is the new rate');
+//   return n;
+// };
 // var booky = newRating(5);
 
 class SearchResults extends Component {
-	// state = { bookresult: [] }
-
+  constructor(props) {
+    super(props);
+    this.state = {
+      averageRating: 3
+    }
+  }
 	// componentDidMount() {
 	// 	 fetch('/booksearch')
  //     .then(res => res.json())
@@ -135,7 +136,7 @@ class SearchResults extends Component {
                       <Rating
                       value = {book.averageRating}
                       max = {5}
-                      onChange={(value) => newRating(value)}
+                      onChange={(value) => this.props.rateBook(value, book.id)}
 
                       />
                     }
@@ -159,13 +160,15 @@ SearchResults.propTypes = {
 
 function mapStateToProps ( state ) {
     console.log(typeof state.booksearch);
-    console.log(state.booksearch.booksearch.length);
+    // console.log(state.booksearch.booksearch.length);
     // console.log( {booksearch: state.booksearch.booksearch[0].title} );
     return { booksearch: state.booksearch.booksearch };
 };
 
+const mapDispatchToProps = {rateBook};
+
 const stylishResults = withStyles(styles)(SearchResults);
 
-export default connect(mapStateToProps)(stylishResults);
+export default connect(mapStateToProps, mapDispatchToProps)(stylishResults);
 
-
+//export default connect(mapStateToProps)(newRating);

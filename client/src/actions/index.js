@@ -1,6 +1,7 @@
 import axios from 'axios';
 
 export const SEARCH_BOOKS = 'search_books';
+export const RATE_BOOK ='rate_book';
 
 const ROOT_URL = 'http://localhost:3001';
 // to booksearch or to googlebooks
@@ -17,3 +18,21 @@ export function searchBooks(values) {
 		})
 	}
 };
+
+export function rateBook(value, id) {
+	const url = (`${ROOT_URL}/userRating`);
+	console.log(value, id);
+	return {
+		type: RATE_BOOK,
+		payload: new Promise((resolve, reject) => {
+			// axios.post(url, { params: userRating })
+			// .then(response => resolve(response.data))
+		})
+	}
+};
+
+
+
+
+
+
