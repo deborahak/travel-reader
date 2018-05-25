@@ -19,9 +19,9 @@ export function searchBooks(values) {
 	}
 };
 
-export function rateBook(value, id) {
-	const url = (`${ROOT_URL}/userRating`);
-	console.log(value, id);
+export function rateBook(userRating, id, averageRating, ratingsCount) {
+	const url = (`${ROOT_URL}/user_ratings`);
+	console.log(userRating, id, averageRating, ratingsCount);
 	return {
 		type: RATE_BOOK,
 		payload: new Promise((resolve, reject) => {

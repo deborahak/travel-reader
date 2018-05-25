@@ -4,18 +4,11 @@ var books = require('google-books-search');
 // var MY_API_KEY = 'AIzaSyA2KfbaezO-UMr_YpPPm7rf9jRJ2RIcqLM';
 var MY_API_KEY = '';
 
-// var queryParams = {
-// 	categories: 'Mystery',
-// 	city: 'Rome',
-// 	country: 'Italy'
-// };
-
 router.get('/', function(req, res, next) {
 	// res.header("Access-Control-Allow-Origin", "*");
 	// res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept"); 
 	// next();
 
-	// req = `${queryParams.categories} in ${queryParams.city} by ${queryParams.notes}`;
 	req = `${req.query.categories} in ${req.query.city} ${req.query.country}`;
 	console.log(req);
 

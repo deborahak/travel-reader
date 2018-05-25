@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import {rateBook} from '../actions';
+
 
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
@@ -13,7 +15,6 @@ import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 import '../style/App.css';
 
-import {rateBook} from '../actions';
 
 const styles = theme => ({
   root: {
@@ -133,11 +134,16 @@ class SearchResults extends Component {
                       : <h5>Genre: {book.categories.toString().substring(0, MAX_CHAR)}...</h5>
                     }
                     {
-                      <Rating
+                      ( (book.averageRating === undefined) )
+                      ? <Rating
                       value = {book.averageRating}
                       max = {5}
-                      onChange={(value) => this.props.rateBook(value, book.id)}
-
+                      onChange={(userRating) => this.props.rateBook(userRating, book.id, book.averageRating = 0, book.ratingsCount= 0)}
+                      />
+                      : <Rating
+                      value = {book.averageRating}
+                      max = {5}
+                      onChange={(userRating) => this.props.rateBook(userRating, book.id, book.averageRating, book.ratingsCount)}
                       />
                     }
                 
