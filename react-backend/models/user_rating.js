@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-//var routes = require('./routes');
 
 const userRatingSchema = mongoose.Schema({
 	id: String,
@@ -8,13 +7,17 @@ const userRatingSchema = mongoose.Schema({
 	ratingsCount: Number
 });
 
-userRatingSchema.methods.rate = function newRating(num) {
-  var prevRating = {averageRating};
-  var ratingsCount = {ratingsCount};
-  var userRating = num;
-  var n = ((prevRating * ratingsCount) + userRating) / (ratingsCount + 1);
-  console.log(n + ' is the new rate');
-  // return this.save n;  
-};
+userRatingSchema.methods.rate = function() {
+  var prevRating = this.averageRating;
+  var ratingsCount = this.ratingsCount;
+  var userRating = this.userRating;
+  var newRating = ((prevRating * ratingsCount) + userRating) / (ratingsCount + 1);
+  console.log( {averageRating} + ' is the new rate');
+  return {
+  	averageRating: newRating
+  }
+}
 
-module.exports = mongoose.model('UserRating', userRatingSchema)
+const UserRating = mongoose.model('UserRating', userRatingSchema);
+
+module.exports = {UserRating};

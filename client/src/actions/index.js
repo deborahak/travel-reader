@@ -25,8 +25,8 @@ export function rateBook(userRating, id, averageRating, ratingsCount) {
 	return {
 		type: RATE_BOOK,
 		payload: new Promise((resolve, reject) => {
-			// axios.post(url, { params: userRating })
-			// .then(response => resolve(response.data))
+			axios.post(url, { params: userRating })
+			.then(response => resolve(response.data))
 		})
 	}
 };
