@@ -145,6 +145,7 @@ class SearchResults extends Component {
                       max = {5}
                       onChange={(userRating) => this.props.rateBook(userRating, book.id, book.averageRating, book.ratingsCount)}
                       />
+                      
                     }
                 
                   </Paper>

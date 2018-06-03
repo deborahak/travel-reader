@@ -41,12 +41,13 @@ export default function(state = INITIAL_STATE, action) {
 	switch(action.type) {
 		case SEARCH_BOOKS:
 		console.log([...state, action.payload]);
-		console.log('Hurray! Payload received', [...state, action.payload]);
+		//console.log('Hurray! Payload received', [...state, action.payload]);
 
 		return Object.assign({}, state, {
 			booksearch: (action.payload)
 		});
         case RATE_BOOK:
+        console.log('Hurray! Payload received', [...state, action.payload]);
         return {...state, averageRating: action.payload};
         
 		default: 
