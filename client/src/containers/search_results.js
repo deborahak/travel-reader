@@ -9,9 +9,10 @@ import Paper from 'material-ui/Paper';
 import Grid from 'material-ui/Grid';
 //import Button from 'material-ui/Button';
 
-import { Rating } from 'material-ui-rating';
+// import {bindActionCreators} from 'redux';
 
 import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
+import { Rating } from 'material-ui-rating';
 
 import '../style/App.css';
 
@@ -72,19 +73,32 @@ const theme = createMuiTheme({
 // };
 // var booky = newRating(5);
 
-class SearchResults extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      averageRating: 3
-    }
+function handleChange(value) {
+  if (value == undefined && value == null){
+    console.log(0);
+    return 0;
+  } else {
+    console.log('Here is it ' + value.averageRating);
+    console.log(typeof parseInt(value.averageRating.toFixed()));
+    return parseInt(value.averageRating.toFixed());
   }
+}
+
+class SearchResults extends Component {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     averageRating: 3
+  //   }
+  // }
 	// componentDidMount() {
 	// 	 fetch('/booksearch')
  //     .then(res => res.json())
  //     .then(bookresult => this.setState({ bookresult }));
 	// }
-
+  // componentWillUpdate(averageRating) {
+  //   if(bookId.match == )
+  // }
   
 	render() {
 		const { classes } = this.props;
@@ -165,14 +179,43 @@ SearchResults.propTypes = {
   classes: PropTypes.object.isRequired,
 };
 
+var experiment;
+
 function mapStateToProps ( state ) {
-    console.log(typeof state.booksearch);
+  if (typeof state.booksearch.averageRating === 'object'){ 
+    // console.log( "AverageRating: " +(state.booksearch.booksearch[0].averageRating).toFixed());
+    var num = +(state.booksearch.booksearch[0].averageRating).toFixed();  // 3
+  } else {
+    num = state.booksearch.booksearch[0].averageRating; // 3
+  }
+
+    // console.log(typeof state.booksearch);
     // console.log(state.booksearch.booksearch.length);
     // console.log( {booksearch: state.booksearch.booksearch[0].title} );
-    return { booksearch: state.booksearch.booksearch };
+
+  if (typeof state.booksearch === 'object') {console.log('so far so good')};
+
+  if (state.booksearch.booksearch.length > 0){
+    console.log( { booksearch: state.booksearch.booksearch[0].title});
+  }
+
+  experiment = state.booksearch.averageRating;
+
+    return { 
+      booksearch: state.booksearch.booksearch,
+      averageRating: handleChange(state.booksearch.averageRating)
+      //rateBook: num
+      };
 };
 
 const mapDispatchToProps = {rateBook};
+console.log(onChange(rateBook));
+
+// function mapDispatchToProps() {
+//   return {
+//     rateBook
+//   };
+// }
 
 const stylishResults = withStyles(styles)(SearchResults);
 

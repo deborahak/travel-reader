@@ -1,6 +1,7 @@
 var express = require('express');
 var app = express();
 
+// configuration for the connection
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const { PORT, DATABASE_URL } = require('./config');
